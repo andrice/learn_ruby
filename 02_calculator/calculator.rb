@@ -1,17 +1,13 @@
 def add (a, b)
-  sum = 0
-  sum += a + b
+  a + b
 end
 
 def subtract (a, b)
-  subtr = 0
-  subtr += a - b
+  a - b
 end
 
 def sum (arr)
-  s = 0
-  arr.each {|item| s += item}
-  s
+  arr.inject(0) {|s,number| s += number}
 end
 
 def multiply(*numbers)
