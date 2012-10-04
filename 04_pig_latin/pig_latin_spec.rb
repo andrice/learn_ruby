@@ -64,4 +64,15 @@ describe "#translate" do
   # * write a test asserting that capitalized words are still capitalized (but with a different initial capital letter, of course)
   # * retain the punctuation from the original phrase
 
+  it "capitilizes translated words with a different initial capital letter" do
+    s = translate("London is the capital of Great Britain")
+    s.should == "Ondonlay isay ethay apitalcay ofay Eatgray Itainbray"
+  end
+
+  it "retains the punctuation from the original phrase" do
+    s = translate("Andrew, have you ever been to New York?")
+    s.should == "Ewandray, avehay ouyay everay eenbay otay Ewnay Orkyay?"
+  end
+
 end
+
