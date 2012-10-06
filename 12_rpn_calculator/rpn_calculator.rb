@@ -1,5 +1,4 @@
 class RPNCalculator
-
   def initialize
     @stack = []
   end
@@ -9,19 +8,23 @@ class RPNCalculator
   end
 
   def plus
-    @stack.length > 1 ? @stack.push(@stack.pop.send(:+, @stack.pop)) : raise("calculator is empty")
+    perform_action(:+)
   end
 
   def minus
-    @stack.length > 1 ? @stack.push(@stack.pop.send(:-, @stack.pop)) : raise("calculator is empty")
+    perform_action(:-)
   end
 
   def divide
-    @stack.length > 1 ? @stack.push(@stack.pop.send(:/, @stack.pop.to_f)) : raise("calculator is empty")
+    perform_action(:/)
   end
 
   def times
-    @stack.length > 1 ? @stack.push(@stack.pop.send(:*, @stack.pop)) : raise("calculator is empty")
+    perform_action(:*)
+  end
+
+  def perform_action(action)
+    @stack.length > 1 ? @stack.push(@stack.pop.send(action, @stack.pop.to_f)) : raise("calculator is empty")
   end
 
   def value
@@ -29,11 +32,11 @@ class RPNCalculator
   end
 
   def tokens str
-    str.split.map! {|item| item.match(/^[+*\/-]$/) ? item.to_sym : item.to_i}
+    str.split.map! { |item| item.match(/^[+*\/-]$/) ? item.to_sym : item.to_i }
   end
 
   def evaluate str
-    str.split.each {|item| item.match(/^[+*\/-]$/) ? @stack.push(@stack.pop.send(item.to_sym, @stack.pop.to_f)) : @stack.push(item.to_i)}
+    str.split.each { |item| item.match(/^[+*\/-]$/) ? @stack.push(@stack.pop.send(item.to_sym, @stack.pop.to_f)) : @stack.push(item.to_i) }
     @stack.last
   end
 end
