@@ -1,31 +1,20 @@
 class Dictionary
-  attr_accessor :entries, :keywords
+  attr_accessor :entries
 
   def initialize
     @entries = {}
-    @keywords = []
   end
 
   def add(entry)
-    if entry.is_a?(Hash)
-      @entries.merge!(entry)
-      @keywords << entry.keys.join
-    else
-      @entries.merge!(entry => nil)
-      @keywords << entry
-    end
+    entry.is_a?(Hash) ? @entries.merge!(entry) : @entries.merge!(entry => nil)
   end
 
   def include?(keyword)
-    @keywords.include? keyword
+    @entries.key? keyword
   end
 
   def find(word)
-    if @entries.empty? || word == 'nothing'
-      {}
-    else
-      Hash[@entries.select { |key, value| key.match(/^#{ word }/) }]
-    end
+    Hash[@entries.select { |key, value| key.match(/^#{ word }/) }]
   end
 
   def printable
@@ -33,6 +22,6 @@ class Dictionary
   end
 
   def keywords
-    @keywords.sort
+    @entries.keys.sort
   end
 end
