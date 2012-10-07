@@ -32,7 +32,7 @@ class RPNCalculator
   end
 
   def tokens(str)
-    str.split.map! { |item| item.match(/^[+*\/-]$/) ? item.to_sym : item.to_i }
+    str.split.map { |item| item.match(/^[+*\/-]$/) ? item.to_sym : item.to_i }
   end
 
   def evaluate(str)

@@ -7,7 +7,7 @@ def transform(word)
     ending = word[-1]
     word = word[0, word.length - 1]
   else
-    ending =''
+    ending = ''
   end
 
   if word.match(/^[aieou]/)

@@ -7,11 +7,11 @@ def subtract(a, b)
 end
 
 def sum(arr)
-  arr.inject(0) { |s,number| s += number }
+  arr.reduce(0) { |s,number| s + number }
 end
 
 def multiply(*numbers)
-  numbers.inject(1) { |product,number| product *= number }
+  numbers.reduce(1) { |product,number| product * number }
 end
 
 def pow(a, b)

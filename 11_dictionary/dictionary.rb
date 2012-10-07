@@ -24,7 +24,7 @@ class Dictionary
     if @entries.empty? || word == 'nothing'
       {}
     else
-      Hash[@entries.select { |key, value| key.match(/^#{word}/) }]
+      Hash[@entries.select { |key, value| key.match(/^#{ word }/) }]
     end
   end
 
