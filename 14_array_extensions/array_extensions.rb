@@ -1,0 +1,13 @@
+class Array
+  def sum
+    self.empty? ? 0 : self.inject(0) { |s, item| s += item }
+  end
+
+  def square
+    self.empty? ? self : self.map { |item| item**2 }
+  end
+
+  def square!
+    self.empty? ? self : self.map! { |item| item**2 }
+  end
+end
