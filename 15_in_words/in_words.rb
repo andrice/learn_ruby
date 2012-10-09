@@ -59,28 +59,24 @@ module NumInWordsExtension
     end
   end
 
-  def decompose(num, str = '')
+  def decompose(num)
     res = ''
     if num > 99
       hundreds = num / 100
       num -= hundreds * 100
-      res += str + "#{ @consts[hundreds] } hundred "
+      res += "#{ @consts[hundreds] } hundred "
     end
     if @consts.member?(num)
-      res += str + @consts[num]
+      res += @consts[num]
     else
       tens = num / 10
       num -= tens * 10
-      res += str + "#{ @consts[tens * 10] } #{ @consts[num] }"
+      res += "#{ @consts[tens * 10] } #{ @consts[num] }"
     end
     res.strip
   end
 end
 
-class Fixnum
-  include NumInWordsExtension
-end
-
-class Bignum
+class Integer
   include NumInWordsExtension
 end
